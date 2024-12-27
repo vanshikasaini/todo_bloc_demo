@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_bloc_demo/todo_list/cubit/todo_cubit.dart';
+import 'package:todo_bloc_demo/todo_list_bloc/bloc/todo_bloc.dart';
 
-class AddTodoPage extends StatefulWidget {
-  const AddTodoPage({super.key});
+class AddTodoBlocPage extends StatefulWidget {
+  const AddTodoBlocPage({super.key});
 
   @override
-  State<AddTodoPage> createState() => _AddTodoPageState();
+  State<AddTodoBlocPage> createState() => _AddTodoBlocPageState();
 }
 
-class _AddTodoPageState extends State<AddTodoPage> {
+class _AddTodoBlocPageState extends State<AddTodoBlocPage> {
   final todoTitleController = TextEditingController();
 
   @override
@@ -29,14 +30,14 @@ class _AddTodoPageState extends State<AddTodoPage> {
             ElevatedButton(
               onPressed: () {
                 // context
-                //     .read<TodoCubit>()
-                //     .addToDo(todoTitleController.text.toString());
+                //     .read<TodoBloc>()
+                //     .add(AddToDo(title: todoTitleController.text.toString()));
                 // Or use below syntax
-                BlocProvider.of<TodoCubit>(context)
-                    .addToDo(todoTitleController.text.toString());
+                BlocProvider.of<TodoBloc>(context)
+                    .add(AddToDo(title: todoTitleController.text.toString()));
                 Navigator.of(context).pop();
               },
-              child: const Text('Add'),
+              child: const Text('Add Todo'),
             ),
           ],
         ),
